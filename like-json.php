@@ -141,12 +141,13 @@ class LIKE_Json {
     public function shortcode($atts) {
         $default = array(
             'task' => '',
-            'id' => ''
+            'id' => '',
+			'format' => ''
         );
         $atts = shortcode_atts($default, $atts);       
         extract($atts);
         
-	    return $this->get_content($task, $id); 
+	    return $this->get_content($task, $id, $format); 
     }
 
     /*

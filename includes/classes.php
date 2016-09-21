@@ -110,6 +110,7 @@ class Studentische_Arbeiten extends Json_Data {
 			$output .= '<div><h2>' . ucfirst($this->task) . '</h2>';
 			switch($this->format) {
 				case 'accordion': 
+					$output .= build_wp_accordion($data, 0);
 					break;
 				default: 
 					$output .= build_html_list($data);
@@ -151,6 +152,7 @@ class Studentische_Arbeiten_Alle extends Json_Data {
 	
 	function create_html($data) {
 		$output = '';
+		$accordion_count = 0;
 		
 		if (count(array_filter($data)) == 0) {
 			$output = '<p>Es wurden keine studentischen Arbeiten gefunden.</p>';
@@ -158,7 +160,9 @@ class Studentische_Arbeiten_Alle extends Json_Data {
 			foreach ($data as $heading => $arr) {
 				$output .= '<div><h2>' . ucfirst($heading) . '</h2>';
 				switch($this->format) {
-					case 'accordion': 
+					case 'accordion': 						
+						$output .= build_wp_accordion($arr, $accordion_count);
+						$accordion_count++;
 						break;
 					default: 
 						$output .= build_html_list($arr);
