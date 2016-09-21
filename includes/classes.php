@@ -1,5 +1,10 @@
 <?php
-
+/*
+ *  Ergaenzung der Funktion "array_column()" für PHP Versionen < 5.5.0
+ *  Ist dies notwendig ?  
+ *  Wird benutzt, um Datensaetze nach bestimmer ID zu filtern. 
+ *
+ */
 if (! function_exists('array_column')) {
     function array_column(array $input, $columnKey, $indexKey = null) {
         $array = array();
@@ -28,8 +33,12 @@ if (! function_exists('array_column')) {
 }
 
 
-
-
+/*
+ *	Bauplan fuer alle Kindklassen dieses Plugins.
+ *	Moeglicherweise unnoetig, 
+ *	u.U werden jedoch noch weitere Objekttypen 
+ *  in zukuenftigen Versionen unterstuetzt.
+ */
 abstract class Json_Data {
 	private $json_urls = NULL;
 	private $format = NULL;
@@ -53,7 +62,10 @@ class Studentische_Arbeiten extends Json_Data {
 		$this->task = $task;
 		$this->format = $format;
     }
-    
+    /*
+	 *	Erstellt Array aus der JSON-Zeichenkette
+	 *	@return [mixed] array
+	 */
     public function get_data() {
         
         if (!empty($this->json_urls)) {
@@ -61,16 +73,18 @@ class Studentische_Arbeiten extends Json_Data {
             //print_r($data);
         } else {
             echo "Keine URL";
-            return; // TODO: Überlegen, welcher Fehler das sein könnte
+            return; 
         }          
         
-		
+		// Falls ID als Parameter uebergeben wurde, filtere nach diesem.
 		if ($this->id != '') {			
 			$key = array_search($this->id, array_column($data, 'id'));
             if ($key === false) {
                 $data = "Es wurde kein Eintrag mit der angegebenen ID gefunden.";
             } else {
-				$tmp = $data[$key];			// Unsauber - brauche numerisches Array fuer die Uebergabe an das Template
+				// Unsauber. Das Template File nimmt nur numerische Arrays entgegen.
+				// Deshalb hier diese unschoene Umwandlung.
+				$tmp = $data[$key];			
 				$data = array();
 				$data[0] = $tmp;
 				unset($tmp);
@@ -79,14 +93,20 @@ class Studentische_Arbeiten extends Json_Data {
         return $data;        
     }
 	
+	/*
+	 *   Erstellt die HTML Ausgabe
+	 *	 @return string
+	 */
 	public function create_html($data) {
 		$output = '';
+		// Faengt Fehler ab, falls unerwartete Dinge als ID uebergeben wurden
 		if ( !is_array($data) ) {
 			$output = "<p>Keinen Eintrag mit der angegebenen ID gefunden</p>";	
 		}
 		elseif (count(array_filter($data)) == 0) {
 			$output = '<p>Es wurden keine studentischen Arbeiten gefunden.</p>';
 		} else {
+			// Baut entsprechend des optionalen Format Parameters die HTML Ausgabe zusammen
 			$output .= '<div><h2>' . ucfirst($this->task) . '</h2>';
 			switch($this->format) {
 				case 'accordion': 

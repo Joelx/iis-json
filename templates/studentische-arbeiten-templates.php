@@ -15,6 +15,10 @@
 
 <?php
 
+/*
+ * Template File fuer die einzelnen 
+ * Ausgabe Formate
+ */
 
 function build_html_list($arr) {
 	$output = '';
@@ -51,7 +55,8 @@ function build_html_list($arr) {
 
 
 function build_wp_accordion($arr) {
-		
+ // TODO
+	
 }
 
 ?>

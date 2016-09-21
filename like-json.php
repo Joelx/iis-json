@@ -60,7 +60,7 @@ class LIKE_Json {
     protected static $options;
     protected $admin_settings_page;
     protected static $instance = null;   
-    private $source = 'http://localhost/like_plugin/like_wiki/json/';
+    private $source = 'http://localhost/like_plugin/like_wiki/json/'; // Finaler Link steht noch nicht fest
 
     /*
      * Erstellt und gibt eine Instanz der Klasse zurück.
@@ -109,7 +109,11 @@ class LIKE_Json {
 		include_once(plugin_dir_path(__FILE__) . 'includes/classes.php');
 
     }
-    
+    /*
+	 *	Wird durch Eingabe eines Shortcuts aufgerufen.
+	 *	Die einzelnen Dokumente liegen in separaten Dateien.  
+	 *  Je nach Task wird die entsprechende URL zusammengebaut.
+	 */
     public function get_content($task = '', $id='', $format='') { 
         $json_urls = array();
         switch ($task) {
@@ -129,8 +133,8 @@ class LIKE_Json {
                 return('Keine Übereinstimmung mit dem angegebenen Task gefunden.');
         }
         
-        $data = $task_object->get_data();
-		echo $task_object->create_html($data);
+        $data = $task_object->get_data();  		
+		echo $task_object->create_html($data);  // Gebe gefundene Daten aus 
 
     }
     
