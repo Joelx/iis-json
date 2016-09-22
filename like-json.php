@@ -61,7 +61,7 @@ class LIKE_Json {
     protected $admin_settings_page;
     protected static $instance = null;   
     //private $source = 'http://localhost/like_plugin/like_wiki/json/'; // Finaler Link steht noch nicht fest
-	private $source = 'https://api.myjson.com/bins/';
+	private $source = 'https://api.myjson.com/bins/'; // Nur zu Testzwecken
 
     /*
      * Erstellt und gibt eine Instanz der Klasse zurück.
