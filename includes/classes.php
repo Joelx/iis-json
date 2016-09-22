@@ -2,7 +2,7 @@
 /*
  *  Ergaenzung der Funktion "array_column()" für PHP Versionen < 5.5.0
  *  Ist dies notwendig ?  
- *  Wird benutzt, um Datensaetze nach bestimmer ID zu filtern. 
+ *  Wird hier benutzt, um Datensaetze nach bestimmer ID zu filtern. 
  *
  */
 if (! function_exists('array_column')) {
@@ -76,7 +76,7 @@ class Studentische_Arbeiten extends Json_Data {
             return; 
         }          
         
-		// Falls ID als Parameter uebergeben wurde, filtere nach diesem.
+		// Falls ID als Parameter uebergeben wurde, filtere nach dieser.
 		if ($this->id != '') {			
 			$key = array_search($this->id, array_column($data, 'id'));
             if ($key === false) {

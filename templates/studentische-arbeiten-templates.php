@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Template File fuer die einzelnen 
+ * Template File fuer  
  * Ausgabe Formate
  */
 
