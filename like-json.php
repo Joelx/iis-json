@@ -54,13 +54,14 @@ class LIKE_Json {
     const option_name = 'like_json'; 
     const version_option_name = '_like_json_version';
     const textdomain = 'like-json';
-    const version = '1.0.0';
+    const version = '1.1.1';
     const php_version = '5.4';
     const wp_version = '4.5';
     protected static $options;
     protected $admin_settings_page;
     protected static $instance = null;   
-    private $source = 'http://localhost/like_plugin/like_wiki/json/'; // Finaler Link steht noch nicht fest
+    //private $source = 'http://localhost/like_plugin/like_wiki/json/'; // Finaler Link steht noch nicht fest
+	private $source = 'https://api.myjson.com/bins/';
 
     /*
      * Erstellt und gibt eine Instanz der Klasse zurück.
@@ -118,13 +119,19 @@ class LIKE_Json {
         $json_urls = array();
         switch ($task) {
             case 'masterarbeiten':
+				$json_url = $this->source . "3xdj0"; // Testzwecke
+				$task_object = new Studentische_Arbeiten($json_url, $id, $task, $format); // Testzwecke
+				break;
             case 'bachelorarbeiten':
-                $json_url = $this->source . $task . "_json.php";
+                //$json_url = $this->source . $task . "_json.php";
+				$json_url = $this->source . "20se4"; // Testzwecke
                 $task_object = new Studentische_Arbeiten($json_url, $id, $task, $format);
                 break;
             case 'arbeiten-alle':
-                $json_urls['bachelorarbeiten'] = $this->source . "bachelorarbeiten_json.php";
-                $json_urls['masterarbeiten'] = $this->source . "masterarbeiten_json.php";
+                //$json_urls['bachelorarbeiten'] = $this->source . "bachelorarbeiten_json.php";
+                //$json_urls['masterarbeiten'] = $this->source . "masterarbeiten_json.php";
+				$json_urls['bachelorarbeiten'] = $this->source . "20se4";
+                $json_urls['masterarbeiten'] = $this->source . "3xdj0";
                 $task_object = new Studentische_Arbeiten_Alle($json_urls, $format);
                 break;
             case 'forschungspraktika':
