@@ -94,7 +94,7 @@ class LIKE_Json {
         /* -- START META-BOXES (Optional) -- */
         // Das CMB-Framework wird eingebunden und initialisiert.
         // (Auf Basis von https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress)
-        include_once(plugin_dir_path(__FILE__) . 'includes/cmb-meta-boxes.php');
+        //include_once(plugin_dir_path(__FILE__) . 'includes/cmb-meta-boxes.php');
         /* -- ENDE META-BOXES -- */
 
         /* -- START Optionsseite (Optional) -- */
