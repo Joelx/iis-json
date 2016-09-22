@@ -1,6 +1,6 @@
 LIKE-JSON Plugin für Wordpress
 =========
-Version 1.0.0 (Stand 02.06.2016)
+Version 1.1.0 (Stand 22.09.2016)
 
 Einbinden von Daten aus dem System des Lehrstuhls für Informationstechnik mit dem Schwerpunkt Kommunikationselektronik (LIKE).
 Aktuell werden folgende Daten unterstützt:
@@ -21,6 +21,7 @@ Shortcodes
    
 Mögliche Zusatzoptionen
 ==========
-  - ID="1467": nur die Arbeit mit dieser bestimmten ID.
+  - id="1467": nur die Arbeit mit dieser bestimmten ID.
+  - format="accordion": Darstellung im Accordion Layout (default: "liste")
 
    
