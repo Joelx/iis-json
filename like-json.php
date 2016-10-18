@@ -60,8 +60,7 @@ class LIKE_Json {
     protected static $options;
     protected $admin_settings_page;
     protected static $instance = null;   
-    //private $source = 'http://localhost/like_plugin/like_wiki/json/'; // Finaler Link steht noch nicht fest
-	private $source = 'https://api.myjson.com/bins/'; // Nur zu Testzwecken
+	private $source = 'http://like.eei.uni-erlangen.de/lehre/studdipl/wp_json/json/'; 
 
     /*
      * Erstellt und gibt eine Instanz der Klasse zurück.
@@ -119,19 +118,16 @@ class LIKE_Json {
         $json_urls = array();
         switch ($task) {
             case 'masterarbeiten':
-				$json_url = $this->source . "3xdj0"; // Testzwecke
+				$json_url = $this->source . "masterarbeiten"; // Testzwecke
 				$task_object = new Studentische_Arbeiten($json_url, $id, $task, $format); // Testzwecke
 				break;
             case 'bachelorarbeiten':
-                //$json_url = $this->source . $task . "_json.php";
-				$json_url = $this->source . "20se4"; // Testzwecke
+				$json_url = $this->source . "bachelorarbeiten"; // Testzwecke
                 $task_object = new Studentische_Arbeiten($json_url, $id, $task, $format);
                 break;
             case 'arbeiten-alle':
-                //$json_urls['bachelorarbeiten'] = $this->source . "bachelorarbeiten_json.php";
-                //$json_urls['masterarbeiten'] = $this->source . "masterarbeiten_json.php";
-				$json_urls['bachelorarbeiten'] = $this->source . "20se4";
-                $json_urls['masterarbeiten'] = $this->source . "3xdj0";
+				$json_urls['bachelorarbeiten'] = $this->source . "bachelorarbeiten";
+                $json_urls['masterarbeiten'] = $this->source . "bachelorarbeiten";
                 $task_object = new Studentische_Arbeiten_Alle($json_urls, $format);
                 break;
             case 'forschungspraktika':
