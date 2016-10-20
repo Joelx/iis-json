@@ -59,7 +59,8 @@ class LIKE_Json {
     const wp_version = '4.5';
     protected static $options;
     protected $admin_settings_page;
-    protected static $instance = null;   
+    protected static $instance = null; 
+	//private $source = "http://localhost/like_plugin/like_wiki/"; // Lokale Test URL  
 	private $source = 'http://like.eei.uni-erlangen.de/lehre/studdipl/wp_json/json/'; 
 
     /*

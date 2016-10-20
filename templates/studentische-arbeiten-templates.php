@@ -20,7 +20,7 @@ function build_html_list($arr) {
 				$output .= '<li><b>Hochschullehrer: </b>' . $arr[$i]['hs_lehrer'] . '</li>';
 				if (array_key_exists('pdf', $arr[$i])) {
 					if(isset($arr[$i]['pdf'])) {
-						$output .= '<li><b>PDF: </b>' . '<a class="mtli_attachment mtli_pdf" href="' .$arr[$i]['pdf'] . '">Aushang</a></li>';
+						$output .= '<li><b>PDF: </b>' . '<a class="mtli_attachment mtli_pdf" href="' . esc_url( $arr[$i]['pdf'] ) . '">Aushang</a></li>';
 					}	
 				}
 			$output .= '</ul>';
@@ -66,7 +66,7 @@ function build_wp_accordion($arr, $accordion_count) {
 			$output .= '<li><b>Hochschullehrer: </b>' . $arr[$i]['hs_lehrer'] . '</li>';
 			if (array_key_exists('pdf', $arr[$i])) {
 					if(isset($arr[$i]['pdf'])) {
-						$output .= '<li><b>PDF: </b>' . '<a class="mtli_attachment mtli_pdf" href="' .$arr[$i]['pdf'] . '">Aushang</a></li>';
+						$output .= '<li><b>PDF: </b>' . '<a class="mtli_attachment mtli_pdf" href="' . esc_url( $arr[$i]['pdf'] ) . '">Aushang</a></li>';
 					}	
 			}
 		$output .= '</ul>';
