@@ -18,6 +18,11 @@ function build_html_list($arr) {
 				$output .= '<li><b>Voraussetzungen: </b>' . $arr[$i]['voraussetzung'] . '</li>';
 				$output .= '<li><b>Betreuer: </b>' . $arr[$i]['betreuer'] . '</li>';
 				$output .= '<li><b>Hochschullehrer: </b>' . $arr[$i]['hs_lehrer'] . '</li>';
+				if (array_key_exists('pdf', $arr[$i])) {
+					if(isset($arr[$i]['pdf'])) {
+						$output .= '<li><b>PDF: </b>' . '<a class="mtli_attachment mtli_pdf" href="' .$arr[$i]['pdf'] . '">Aushang</a></li>';
+					}	
+				}
 			$output .= '</ul>';
 		$output .= '</li>';
 }
@@ -59,6 +64,11 @@ function build_wp_accordion($arr, $accordion_count) {
 			$output .= '<li><b>Voraussetzungen: </b>' . $arr[$i]['voraussetzung'] . '</li>';
 			$output .= '<li><b>Betreuer: </b>' . $arr[$i]['betreuer'] . '</li>';
 			$output .= '<li><b>Hochschullehrer: </b>' . $arr[$i]['hs_lehrer'] . '</li>';
+			if (array_key_exists('pdf', $arr[$i])) {
+					if(isset($arr[$i]['pdf'])) {
+						$output .= '<li><b>PDF: </b>' . '<a class="mtli_attachment mtli_pdf" href="' .$arr[$i]['pdf'] . '">Aushang</a></li>';
+					}	
+			}
 		$output .= '</ul>';
 
 		$output .= '<div class="accordion-inner clearfix">';

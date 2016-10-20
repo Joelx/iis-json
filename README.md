@@ -1,6 +1,6 @@
 LIKE-JSON Plugin für Wordpress
 =========
-Version 1.1.3 (Stand 20.10.2016)
+Version 1.2.0 (Stand 20.10.2016)
 
 Einbinden von Daten aus dem System des Lehrstuhls für Informationstechnik mit dem Schwerpunkt Kommunikationselektronik (LIKE).
 Aktuell werden folgende Daten unterstützt:
