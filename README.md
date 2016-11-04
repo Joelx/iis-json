@@ -19,10 +19,10 @@ Shortcodes
    [like task="masterarbeiten"]
    
    
-MÃ¶gliche Zusatzoptionen
+Moegliche Zusatzoptionen
 ==========
   - id="1467": nur die Arbeit mit dieser bestimmten ID.
   - format="accordion": Darstellung im Accordion Layout (default: "liste")
-  - advisor="müller": Alle Arbeiten eines bestimmten Betreuers. Angabe durch Nachname (Groß-/Kleinschreibung nicht relevant)
+  - advisor="fischer": Alle Arbeiten eines bestimmten Betreuers. Angabe durch Nachname (Groß-/Kleinschreibung nicht relevant)
 
    

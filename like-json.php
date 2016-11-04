@@ -136,7 +136,7 @@ class LIKE_Json {
         }
         
         $data = $task_object->get_data();  		
-		echo $task_object->create_html($data);  // Gebe gefundene Daten aus 
+		return $task_object->create_html($data);  // Gebe gefundene Daten aus 
 
     }
     
