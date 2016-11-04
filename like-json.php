@@ -3,7 +3,7 @@
 /*
   Plugin Name: LIKE-Json
   Plugin URI: https://github.com/Joelx/like-json
-  Version: 1.2.0
+  Version: 1.3.0
   Description: Dient der Ausgabe von studentischen Arbeiten aus der LIKE Datenbank.
   Author: LIKE
   Author URI: 
@@ -54,7 +54,7 @@ class LIKE_Json {
     const option_name = 'like_json'; 
     const version_option_name = '_like_json_version';
     const textdomain = 'like-json';
-    const version = '1.2.0';
+    const version = '1.3.0';
     const php_version = '5.4';
     const wp_version = '4.5';
     protected static $options;
@@ -115,16 +115,16 @@ class LIKE_Json {
 	 *	Die einzelnen Dokumente liegen in separaten Dateien.  
 	 *  Je nach Task wird die entsprechende URL zusammengebaut.
 	 */
-    public function get_content($task = '', $id='', $format='') { 
+    public function get_content($task = '', $id='', $format='', $advisor='') { 
         $json_urls = array();
         switch ($task) {
             case 'masterarbeiten':
-				$json_url = $this->source . "masterarbeiten"; // Testzwecke
-				$task_object = new Studentische_Arbeiten($json_url, $id, $task, $format); // Testzwecke
+				$json_url = $this->source . "masterarbeiten"; 
+				$task_object = new Studentische_Arbeiten($json_url, $id, $task, $format, $advisor); 
 				break;
             case 'bachelorarbeiten':
-				$json_url = $this->source . "bachelorarbeiten"; // Testzwecke
-                $task_object = new Studentische_Arbeiten($json_url, $id, $task, $format);
+				$json_url = $this->source . "bachelorarbeiten"; 
+                $task_object = new Studentische_Arbeiten($json_url, $id, $task, $format, $advisor);
                 break;
             case 'arbeiten-alle':
 				$json_urls['bachelorarbeiten'] = $this->source . "bachelorarbeiten";
@@ -144,12 +144,13 @@ class LIKE_Json {
         $default = array(
             'task' => '',
             'id' => '',
-			'format' => ''
+			'format' => '',
+			'advisor' => ''
         );
         $atts = shortcode_atts($default, $atts);       
         extract($atts);
         
-	    return $this->get_content($task, $id, $format); 
+	    return $this->get_content($task, $id, $format, $advisor); 
     }
 
     /*

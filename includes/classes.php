@@ -56,11 +56,12 @@ class Studentische_Arbeiten extends Json_Data {
     private $id = NULL;
 	private $task = NULL;
     
-    function __construct($json_urls, $id, $task, $format) {
+    function __construct($json_urls, $id, $task, $format, $advisor) {
         $this->id = $id;
         $this->json_urls = $json_urls;
 		$this->task = $task;
 		$this->format = $format;
+		$this->advisor = $advisor;
     }
     /*
 	 *	Erstellt Array aus der JSON-Zeichenkette
@@ -90,6 +91,24 @@ class Studentische_Arbeiten extends Json_Data {
 				unset($tmp);
 			}
 		}    
+		
+		// Falls Advisor als Parameter uebergeben wurde, filtere nach diesem Betreuer.
+		if ($this->advisor != '') {
+			$tmp = $data;
+			$data = array();
+			$i = 0;
+			foreach($tmp as $array) {
+				if (stripos($array['betreuer'], $this->advisor))	{
+					$data[$i] = $array;
+					$i++;
+				}				
+			}
+			if (!$data) {
+				echo "Keinen Eintrag zu angegebenem Betreuer gefunden";	
+				return;
+			}
+		}    
+		
         return $data;        
     }
 	
@@ -101,7 +120,7 @@ class Studentische_Arbeiten extends Json_Data {
 		$output = '';
 		// Faengt Fehler ab, falls unerwartete Dinge als ID uebergeben wurden
 		if ( !is_array($data) ) {
-			$output = "<p>Keinen Eintrag mit der angegebenen ID gefunden</p>";	
+			$output = "<p>Keinen Eintrag zur angegebenen Filterregel gefunden</p>";	
 		}
 		elseif (count(array_filter($data)) == 0) {
 			$output = '<p>Es wurden keine studentischen Arbeiten gefunden.</p>';
