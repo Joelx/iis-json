@@ -3,7 +3,7 @@
 /*
   Plugin Name: LIKE-Json
   Plugin URI: https://github.com/Joelx/like-json
-  Version: 1.3.1
+  Version: 1.3.2
   Description: Dient der Ausgabe von studentischen Arbeiten aus der LIKE Datenbank.
   Author: LIKE
   Author URI: 
@@ -54,7 +54,7 @@ class LIKE_Json {
     const option_name = 'like_json'; 
     const version_option_name = '_like_json_version';
     const textdomain = 'like-json';
-    const version = '1.3.1';
+    const version = '1.3.2';
     const php_version = '5.4';
     const wp_version = '4.5';
     protected static $options;
