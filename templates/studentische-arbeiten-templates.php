@@ -11,9 +11,17 @@ function build_html_list($arr) {
 	
 	for ($i = 0; $i < count($arr); $i++) {
 		$output .= '<li>';
-			$output .= '<span class="list-caption">' . $arr[$i]['titel'] . ' [ID: ' . $arr[$i]['id'] . ']' . '</span>'; 
+			$output .= '<span class="list-caption">' . $arr[$i]['titel'] . '</span>'; 
 			$output .= '<ul class="list-body">';
 				$output .= '<li><b>Themenbeschreibung: </b>' . $arr[$i]['beschreibung'] . '</li>';
+				if(!empty($arr[$i]['aufgaben'])) {
+					$aufgaben = explode("/", $arr[$i]['aufgaben']);
+					$output .= "<ul">;
+					foreach($aufgaben as $aufgabe) {
+						$output .= '<li>' . $aufgabe . '</li>';
+					}
+					$output .= "</ul>";
+				}
 				$output .= '<li><b>Themengebiete: </b>' . $arr[$i]['kategorie'] . '</li>';
 				$output .= '<li><b>Voraussetzungen: </b>' . $arr[$i]['voraussetzung'] . '</li>';
 				$output .= '<li><b>Betreuer: </b>' . $arr[$i]['betreuer'] . '</li>';
@@ -43,11 +51,19 @@ function build_wp_accordion($arr, $accordion_count) {
 		
 		$output .= '<div class="accordion-heading">';
 		$output .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-' . $accordion_count . '" href="#collapse_' . $collapse_count . '">';
-		$output .= $arr[$i]['titel'] . ' [ID: ' . $arr[$i]['id'] . '</a>';
+		$output .= $arr[$i]['titel'] . '</a>';
 		$output .= '</div>';
 		$output .= '<div id="collapse_' . $collapse_count . '" class="accordion-body" style="display: none;">';
 		$output .= '<ul>';
 			$output .= '<li><b>Themenbeschreibung: </b>' . $arr[$i]['beschreibung'] . '</li>';
+			if(!empty($arr[$i]['aufgaben'])) {
+					$aufgaben = explode("/", $arr[$i]['aufgaben']);
+					$output .= "<ul">;
+					foreach($aufgaben as $aufgabe) {
+						$output .= '<li>' . $aufgabe . '</li>';
+					}
+					$output .= "</ul>";
+				}
 			$output .= '<li><b>Themengebiete: </b>' . $arr[$i]['kategorie'] . '</li>';
 			$output .= '<li><b>Voraussetzungen: </b>' . $arr[$i]['voraussetzung'] . '</li>';
 			$output .= '<li><b>Betreuer: </b>' . $arr[$i]['betreuer'] . '</li>';
