@@ -56,12 +56,13 @@ class Studentische_Arbeiten extends Json_Data {
     private $id = NULL;
 	private $task = NULL;
     
-    function __construct($json_urls, $id, $task, $format, $advisor) {
+    function __construct($json_urls, $id, $task, $format, $advisor, $status) {
         $this->id = $id;
         $this->json_urls = $json_urls;
 		$this->task = $task;
 		$this->format = $format;
 		$this->advisor = $advisor;
+		$this->status = $status;
     }
     /*
 	 *	Erstellt Array aus der JSON-Zeichenkette
@@ -105,6 +106,23 @@ class Studentische_Arbeiten extends Json_Data {
 			}
 			if (!$data) {
 				echo "Keinen Eintrag zu angegebenem Betreuer gefunden";	
+				return;
+			}
+		}    
+		
+	     // Falls Status als Parameter uebergeben wurde, filtere nach diesem Vergabestatus.
+		if ($this->status != '') {
+			$tmp = $data;
+			$data = array();
+			$i = 0;
+			foreach($tmp as $array) {
+				if (stripos($array['status'], $this->status))	{
+					$data[$i] = $array;
+					$i++;
+				}				
+			}
+			if (!$data) {
+				echo "Keinen Eintrag zu angegebenem Vergabestatus gefunden";	
 				return;
 			}
 		}    
