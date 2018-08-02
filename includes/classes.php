@@ -195,7 +195,7 @@ class Studentische_Arbeiten_Alle extends Json_Data {
 			$output = '<p>Es wurden keine studentischen Arbeiten gefunden.</p>';
 		} else {					
 			foreach ($data as $heading => $arr) {
-				$output .= '<div><h2>' . ucfirst($heading) . '</h2>';
+				//$output .= '<div><h2>' . ucfirst($heading) . '</h2>';
 				switch($this->format) {
 					case 'accordion': 						
 						$output .= build_wp_accordion($arr, $accordion_count);
