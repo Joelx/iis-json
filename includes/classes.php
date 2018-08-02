@@ -114,9 +114,10 @@ class Studentische_Arbeiten extends Json_Data {
 		if ($this->status != '') {
 			$tmp = $data;
 			$data = array();
-			$i = 0;
-			foreach($tmp as $array) {
-				if (stripos($array['status'], $this->status))	{
+			$i = 0;            
+			foreach($tmp as $array) {                
+				if ($this->status == substr($array['status'], 0, strlen($array['status'])))	{
+                    
 					$data[$i] = $array;
 					$i++;
 				}				
@@ -144,7 +145,7 @@ class Studentische_Arbeiten extends Json_Data {
 			$output = '<p>Es wurden keine studentischen Arbeiten gefunden.</p>';
 		} else {
 			// Baut entsprechend des optionalen Format Parameters die HTML Ausgabe zusammen
-			$output .= '<div><h2>' . ucfirst($this->task) . '</h2>';
+			//$output .= '<div><h2>' . ucfirst($this->task) . '</h2>';
 			switch($this->format) {
 				case 'accordion': 
 					$output .= build_wp_accordion($data, 0);
