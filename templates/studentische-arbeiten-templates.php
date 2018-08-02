@@ -22,8 +22,8 @@ function build_html_list($arr) {
 					}
 					$output .= "</ul>";
 				}
-				$output .= '<li><b>Themengebiete: </b>' . $arr[$i]['kategorie'] . '</li>';
-				$output .= '<li><b>Voraussetzungen: </b>' . $arr[$i]['voraussetzung'] . '</li>';
+				$output .= '<li><b>Themengebiete: </b>' . $arr[$i]['kategorien'] . '</li>';
+				$output .= '<li><b>Voraussetzungen: </b>' . $arr[$i]['voraussetzungen'] . '</li>';
 				$output .= '<li><b>Betreuer: </b>' . $arr[$i]['betreuer'] . '</li>';
 				$output .= '<li><b>Hochschullehrer: </b>' . $arr[$i]['hs_lehrer'] . '</li>';
 				if (array_key_exists('pdf', $arr[$i])) {
@@ -64,8 +64,8 @@ function build_wp_accordion($arr, $accordion_count) {
 					}
 					$output .= "</ul>";
 				}
-			$output .= '<li><b>Themengebiete: </b>' . $arr[$i]['kategorie'] . '</li>';
-			$output .= '<li><b>Voraussetzungen: </b>' . $arr[$i]['voraussetzung'] . '</li>';
+			$output .= '<li><b>Themengebiete: </b>' . $arr[$i]['kategorien'] . '</li>';
+			$output .= '<li><b>Voraussetzungen: </b>' . $arr[$i]['voraussetzungen'] . '</li>';
 			$output .= '<li><b>Betreuer: </b>' . $arr[$i]['betreuer'] . '</li>';
 			$output .= '<li><b>Hochschullehrer: </b>' . $arr[$i]['hs_lehrer'] . '</li>';
 			if (array_key_exists('pdf', $arr[$i])) {
