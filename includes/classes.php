@@ -82,7 +82,7 @@ class Studentische_Arbeiten extends Json_Data {
 		if ($this->id != '') {			
 			$key = array_search($this->id, array_column($data, 'id'));
             if ($key === false) {
-                $data = "Es wurde kein Eintrag mit der angegebenen ID gefunden.";
+                $data = "";
             } else {
 				// Unsauber. Das Template File nimmt nur numerische Arrays entgegen.
 				// Deshalb hier diese unschoene Umwandlung.
@@ -105,7 +105,7 @@ class Studentische_Arbeiten extends Json_Data {
 				}				
 			}
 			if (!$data) {
-				echo "Keinen Eintrag zu angegebenem Betreuer gefunden";	
+				echo "";	
 				return;
 			}
 		}    
@@ -123,7 +123,7 @@ class Studentische_Arbeiten extends Json_Data {
 				}				
 			}
 			if (!$data) {
-				echo "Keinen Eintrag zu angegebenem Vergabestatus gefunden";	
+				echo "";	
 				return;
 			}
 		}    
@@ -139,10 +139,10 @@ class Studentische_Arbeiten extends Json_Data {
 		$output = '';
 		// Faengt Fehler ab, falls unerwartete Dinge als ID uebergeben wurden
 		if ( !is_array($data) ) {
-			$output = "<p>Keinen Eintrag zur angegebenen Filterregel gefunden</p>";	
+			$output = "";	
 		}
 		elseif (count(array_filter($data)) == 0) {
-			$output = '<p>Es wurden keine studentischen Arbeiten gefunden.</p>';
+			$output = '';
 		} else {
 			// Baut entsprechend des optionalen Format Parameters die HTML Ausgabe zusammen
 			//$output .= '<div><h2>' . ucfirst($this->task) . '</h2>';
@@ -193,7 +193,7 @@ class Studentische_Arbeiten_Alle extends Json_Data {
 		$accordion_count = 0;
 		
 		if (count(array_filter($data)) == 0) {
-			$output = '<p>Es wurden keine studentischen Arbeiten gefunden.</p>';
+			$output = '';
 		} else {					
 			foreach ($data as $heading => $arr) {
 				//$output .= '<div><h2>' . ucfirst($heading) . '</h2>';
