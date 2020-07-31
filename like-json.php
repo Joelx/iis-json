@@ -3,7 +3,7 @@
 /*
   Plugin Name: LIKE-Json
   Plugin URI: https://github.com/Joelx/like-json
-  Version: 1.4.3
+  Version: 1.5.0
   Description: Dient der Ausgabe von studentischen Arbeiten aus der LIKE Datenbank.
   Author: LIKE
   Author URI: 
@@ -54,7 +54,7 @@ class LIKE_Json {
     const option_name = 'like_json'; 
     const version_option_name = '_like_json_version';
     const textdomain = 'like-json';
-    const version = '1.4.3';
+    const version = '1.5.0';
     const php_version = '5.4';
     const wp_version = '4.5';
     protected static $options;
@@ -115,7 +115,7 @@ class LIKE_Json {
 	 *	Die einzelnen Dokumente liegen in separaten Dateien.  
 	 *  Je nach Task wird die entsprechende URL zusammengebaut.
 	 */
-    public function get_content($task = '', $id='', $format='', $advisor='', $status='') { 
+    public function get_content($task = '', $id='', $format='', $advisor='', $status='', $ressources='') { 
         $json_urls = array();
         switch ($task) {
             case 'masterarbeiten':
@@ -149,9 +149,14 @@ class LIKE_Json {
             default:
                 return('Keine Übereinstimmung mit dem angegebenen Task gefunden.');
         }
+		
+		switch ($ressources) {
+			case 'link': break;
+			default: $ressources = 'base64';
+		}
         
         $data = $task_object->get_data();  		
-		return $task_object->create_html($data);  // Gebe gefundene Daten aus 
+		return $task_object->create_html($data, $ressources);  // Gebe gefundene Daten aus 
 
     }
     
@@ -159,14 +164,15 @@ class LIKE_Json {
         $default = array(
             'task' => '',
             'id' => '',
-	    'format' => '',
-	    'advisor' => '',
-	    'status' => ''
+			'format' => '',
+			'advisor' => '',
+			'status' => '',
+			'ressources' => 'base64'
         );
         $atts = shortcode_atts($default, $atts);       
         extract($atts);
         
-	    return $this->get_content($task, $id, $format, $advisor, $status); 
+	    return $this->get_content($task, $id, $format, $advisor, $status, $ressources); 
     }
 
     /*
