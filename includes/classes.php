@@ -45,7 +45,7 @@ abstract class Json_Data {
 	
 	abstract protected function get_data();
 
-	abstract protected function create_html($data);
+	abstract protected function create_html($data, $ressources);
 	
 }
 
@@ -135,7 +135,7 @@ class Studentische_Arbeiten extends Json_Data {
 	 *   Erstellt die HTML Ausgabe
 	 *	 @return string
 	 */
-	public function create_html($data) {
+	public function create_html($data, $ressources) {
 		$output = '';
 		// Faengt Fehler ab, falls unerwartete Dinge als ID uebergeben wurden
 		if ( !is_array($data) ) {
@@ -148,10 +148,10 @@ class Studentische_Arbeiten extends Json_Data {
 			//$output .= '<div><h2>' . ucfirst($this->task) . '</h2>';
 			switch($this->format) {
 				case 'accordion': 
-					$output .= build_wp_accordion($data, 0);
+					$output .= build_wp_accordion($data, 0, $ressources);
 					break;
 				default: 
-					$output .= build_html_list($data);
+					$output .= build_html_list($data, $ressources);
 					break;	
 			}
 			$output .= '</div>';
@@ -188,7 +188,7 @@ class Studentische_Arbeiten_Alle extends Json_Data {
 		return $data;
 	}
 	
-	function create_html($data) {
+	function create_html($data, $ressources) {
 		$output = '';
 		$accordion_count = 0;
 		
@@ -199,11 +199,11 @@ class Studentische_Arbeiten_Alle extends Json_Data {
 				//$output .= '<div><h2>' . ucfirst($heading) . '</h2>';
 				switch($this->format) {
 					case 'accordion': 						
-						$output .= build_wp_accordion($arr, $accordion_count);
+						$output .= build_wp_accordion($arr, $accordion_count, $ressources);
 						$accordion_count++;
 						break;
 					default: 
-						$output .= build_html_list($arr);
+						$output .= build_html_list($arr, $ressources);
 						break;						
 				}
 				$output .= '</div>';
