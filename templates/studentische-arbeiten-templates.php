@@ -5,7 +5,7 @@
  * Ausgabe Formate
  */
 
-function build_html_list($arr) {
+function build_html_list($arr, $ressources) {
 	$output = '';
 	$output .= '<ul class="list-wrap">';
 	
@@ -28,7 +28,16 @@ function build_html_list($arr) {
 				$output .= '<li><b>Hochschullehrer: </b>' . $arr[$i]['hs_lehrer'] . '</li>';
 				if (array_key_exists('pdf', $arr[$i])) {
 					if(!empty($arr[$i]['pdf'])) {
-						$output .= '<li><b>PDF: </b>' . '<a class="mtli_attachment mtli_pdf" href="' . esc_url( $arr[$i]['pdf'] ) . '">Aushang</a></li>';
+						if ($ressources == 'link') {
+							$pdf_ressource = esc_url( $arr[$i]['pdf'] );
+						} else {
+							try {
+								$pdf_ressource = "data:application/pdf;base64," . chunk_split(base64_encode(wp_remote_retrieve_body(wp_safe_remote_get(esc_url( $arr[$i]['pdf'] )))));
+							} catch (Exception $e) {
+								$pdf_ressource = esc_url( $arr[$i]['pdf'] );
+							}							
+						}
+						$output .= '<li><b>PDF: </b>' . '<a class="mtli_attachment mtli_pdf" href="' . $pdf_ressource . '" download="Aushang.pdf">Aushang</a></li>';
 					}	
 				}
 			$output .= '</ul>';
@@ -40,7 +49,7 @@ function build_html_list($arr) {
 }
 
 
-function build_wp_accordion($arr, $accordion_count) {
+function build_wp_accordion($arr, $accordion_count, $ressources) {
 	$collapse_count = 0;
 	
 	$output = '';
@@ -69,9 +78,18 @@ function build_wp_accordion($arr, $accordion_count) {
 			$output .= '<li><b>Betreuer: </b>' . $arr[$i]['betreuer'] . '</li>';
 			$output .= '<li><b>Hochschullehrer: </b>' . $arr[$i]['hs_lehrer'] . '</li>';
 			if (array_key_exists('pdf', $arr[$i])) {
-					if(!empty($arr[$i]['pdf'])) {
-						$output .= '<li><b>PDF: </b>' . '<a class="mtli_attachment mtli_pdf" href="' . esc_url( $arr[$i]['pdf'] ) . '">Aushang</a></li>';
-					}	
+				if(!empty($arr[$i]['pdf'])) {
+					if ($ressources == 'link') {
+						$pdf_ressource = esc_url( $arr[$i]['pdf'] );
+					} else {
+						try {
+							$pdf_ressource = "data:application/pdf;base64," . chunk_split(base64_encode(wp_remote_retrieve_body(wp_safe_remote_get(esc_url( $arr[$i]['pdf'] )))));
+						} catch (Exception $e) {
+							$pdf_ressource = esc_url( $arr[$i]['pdf'] );
+						}							
+					}
+					$output .= '<li><b>PDF: </b>' . '<a class="mtli_attachment mtli_pdf" href="' . $pdf_ressource . '" download="Aushang.pdf">Aushang</a></li>';
+				}	
 			}
 		$output .= '</ul>';
 
