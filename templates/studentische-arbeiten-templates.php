@@ -57,7 +57,7 @@ function build_wp_accordion($arr, $accordion_count, $ressources) {
 	
 	for ($i = 0; $i < count($arr); $i++) {
 
-		$output .= '[collapse title="' . $arr[$i]['titel'] . ' [ID: ' . $arr[$i]['id'] . ']' . '" color=""]';
+		$output .= '[collapse title="' . $arr[$i]['titel'] . ' (ID: ' . $arr[$i]['id'] . ')' . '" ]';
 
 		$output .= '<ul>';
 			$output .= '<li><b>Themenbeschreibung: </b>' . $arr[$i]['beschreibung'] . '</li>';
