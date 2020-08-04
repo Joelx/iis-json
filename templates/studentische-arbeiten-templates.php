@@ -95,7 +95,7 @@ function build_wp_accordion($arr, $accordion_count, $ressources) {
 	}	
 	$output .= '[/collapsibles]';
 	
-	return $output;
+	return do_shortcode($output);
 }
 
 ?>
