@@ -53,16 +53,12 @@ function build_wp_accordion($arr, $accordion_count, $ressources) {
 	$collapse_count = 0;
 	
 	$output = '';
-	$output .= '<div id="accordion-' . $accordion_count . '" class="accordion">';
+	$output .= '[collapsibles]';
 	
 	for ($i = 0; $i < count($arr); $i++) {
-		$output .= '<div class="accordion-group">';
-		
-		$output .= '<div class="accordion-heading">';
-		$output .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-' . $accordion_count . '" href="#collapse_' . $collapse_count . '">';
-		$output .= $arr[$i]['titel'] . ' [ID: ' . $arr[$i]['id'] . ']' . '</a>';
-		$output .= '</div>';
-		$output .= '<div id="collapse_' . $collapse_count . '" class="accordion-body" style="display: none;">';
+
+		$output .= '[collapse title="' . $arr[$i]['titel'] . ' [ID: ' . $arr[$i]['id'] . ']' . '" color=""]';
+
 		$output .= '<ul>';
 			$output .= '<li><b>Themenbeschreibung: </b>' . $arr[$i]['beschreibung'] . '</li>';
 			if(!empty($arr[$i]['aufgaben'])) {
@@ -92,22 +88,12 @@ function build_wp_accordion($arr, $accordion_count, $ressources) {
 				}	
 			}
 		$output .= '</ul>';
-
-		$output .= '<div class="accordion-inner clearfix">';
-		
-		
-		
-		$output .= '</div>';
-		$output .= '</div>';
-		
-		$output .= '</div>';	
+		$output .= '[/collapse]';
 		
 		$collapse_count++;
 
-	}
-	
-	
-	$output .= '</div>';
+	}	
+	$output .= '[/collapsibles]';
 	
 	return $output;
 }
