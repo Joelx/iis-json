@@ -61,7 +61,7 @@ class LIKE_Json {
     protected $admin_settings_page;
     protected static $instance = null; 
 	
-	private $source = 'http://like40.like.e-technik.uni-erlangen.de/json/'; 
+	private $source = 'http://like35.like.e-technik.uni-erlangen.de/json/'; 
 
     /*
      * Erstellt und gibt eine Instanz der Klasse zurück.
